@@ -1,0 +1,48 @@
+<mtapp:setting
+    id="fluentd_host"
+    label="<__trans phrase="Fluentd Server">"
+>
+    <input type="text" class="text short" name="fluentd_host" value="<mt:var name='fluentd_host' escape='html' />" placeholder="<__trans phrase="Hostname" />" />
+    :
+    <input type="text" class="text short" name="fluentd_port" value="<mt:var name='fluentd_port' escape='html' />" placeholder="<__trans phrase="Port" />" />
+</mtapp:setting>
+
+<mtapp:setting
+    id="fluent_this_hostname"
+    label="<__trans phrase="This hostname">"
+    show_hint="1"
+    hint="<__trans phrase="Hostname to merge to Fluent message. Blank to send nothing." />"
+>
+    <div>
+        <input type="text" class="text" name="fluent_this_hostname" value="<mt:var name='fluent_this_hostname' escape='html' />" />
+    </div>
+    <mt:if name="original_hostname">
+    <div>
+        <__trans phrase="The original hostname:"> <mt:var name="original_hostname" />
+    </div>
+    </mt:if>
+</mtapp:setting>
+
+<mt:loop name="fluents">
+<mtapp:setting
+    id="$key"
+    label="$label"
+>
+    <label>
+        <input type="hidden" name="<mt:var name="key">" value="0" />
+        <input type="checkbox" class="cb" name="<mt:var name="key">" value="1"<mt:if name="$key"> checked="checked"</mt:if> />
+        <__trans phrase="<mt:var name='description'>">
+    </label>
+</mtapp:setting>
+
+<mtapp:setting
+    id="$tag_key"
+    label="$tag_label"
+    show_hint="1"
+    hint="<__trans phrase='Choose tag to log this event.'>"
+>
+    <input type="text" class="text short" name="<mt:var name='tag_key'>" value="<mt:var name='$tag_key' escape='html' />" />
+</mtapp:setting>
+</mt:loop>
+
+</__trans_section>

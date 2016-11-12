@@ -1,0 +1,90 @@
+id: Fluent
+version: 0.1.2
+schema_version: 0.08
+name: Fluent
+description: <__trans phrase="Plugin to log activities in Movable Type to Fluentd.">
+l10n_class: MT::Fluent::L10N
+
+settings:
+  fluentd_host:
+    Scope: system
+    Default: localhost
+  fluentd_port:
+    Scope: system
+    Default: 24224
+  fluent_this_hostname:
+    Scope: system
+    Default: 0
+
+  fluent_log:
+    Scope: system
+    Default: 0
+  fluent_log_tag:
+    Scope: system
+    Default: mt.log
+
+  fluent_usage:
+    Scope: system
+    Default: 0
+  fluent_usage_tag:
+    Scope: system
+    Default: mt.usage
+
+  fluent_usage:
+    Scope: system
+    Default: 0
+  fluent_usage_tag:
+    Scope: system
+    Default: mt.usage
+
+  fluent_performance:
+    Scope: system
+    Default: 0
+  fluent_performance_tag:
+    Scope: system
+    Default: mt.performance
+
+  fluent_error:
+    Scope: system
+    Default: 0
+  fluent_error_tag:
+    Scope: system
+    Default: mt.error
+
+  fluent_entry:
+    Scope: blog
+    Default: 0
+  fluent_entry_tag:
+    Scope: blog
+    Default: mt.archive
+  fluent_entry_template_id:
+    Scope: blog
+
+  fluent_page:
+    Scope: blog
+    Default: 0
+  fluent_page_tag:
+    Scope: blog
+    Default: mt.archive
+  fluent_page_template_id:
+    Scope: blog
+
+system_config_template:
+  code: $Fluent::MT::Fluent::Config::system_config_template
+blog_config_template:
+  code: $Fluent::MT::Fluent::Config::blog_config_template
+
+default_templates:
+  base_path: templates
+  global:module:
+    fluent:
+      label: Entry And Page JSON Log For Fluentd
+
+callbacks:
+  build_file: $Fluent::MT::Fluent::Archive::on_build_file
+  post_delete_archive_file: $Fluent::MT::Fluent::Archive::on_post_delete_archive_file
+  post_init: $Fluent::MT::Fluent::System::on_post_init
+
+tags:
+  function:
+    FluentAction: $Fluent::MT::Fluent::Tags::function_FluentAction

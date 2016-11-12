@@ -1,0 +1,74 @@
+
+<mtapp:setting
+    id="fluent_entry"
+    label="<__trans phrase="Entry">"
+>
+    <label>
+        <input type="checkbox" class="cb" name="fluent_entry" value="1"<mt:if name="fluent_entry"> checked="checked"</mt:if> />
+        <input type="hidden" name="fluent_entry" value="0" />
+        <__trans phrase="Logging changes" />
+    </label>
+</mtapp:setting>
+
+<mtapp:setting
+    id="fluent_entry_tag"
+    label="<__trans phrase="Entry Tag">"
+>
+    <input type="text" class="text short" name="fluent_entry_tag" value="<mt:var name='fluent_entry_tag' escape='html' />" />
+</mtapp:setting>
+
+<mtapp:setting
+    id="fluent_entry"
+    label="<__trans phrase="Entry Template">"
+    hint="<__trans phrase="Choose a template to build entry log JSON.">"
+    show_hint="1"
+>
+    <select name="fluent_entry_template_id">
+        <mt:loop name="templates">
+            <option
+                value="<mt:var name='template_id' escape='html' />"
+                <mt:if name="fluent_entry_template_id" eq="$template_id">selected="selected"</mt:if>
+                >
+                <mt:var name="label" escape="html" />
+                (<mt:var name="blog" escape="html" />)
+            </option>
+        </mt:loop>
+    </select>
+</mtapp:setting>
+
+<mtapp:setting
+    id="fluent_page"
+    label="<__trans phrase="Page">"
+>
+    <label>
+        <input type="checkbox" class="cb" name="fluent_page" value="1"<mt:if name="fluent_page"> checked="checked"</mt:if> />
+        <input type="hidden" name="fluent_page" value="0" />
+        <__trans phrase="Logging changes" />
+    </label>
+</mtapp:setting>
+
+<mtapp:setting
+    id="fluent_page_tag"
+    label="<__trans phrase="Page Tag">"
+>
+    <input type="text" class="text short" name="fluent_page_tag" value="<mt:var name='fluent_page_tag' escape='html' />" />
+</mtapp:setting>
+
+<mtapp:setting
+    id="fluent_page"
+    label="<__trans phrase="Page Template">"
+    hint="<__trans phrase="Choose a template to build page log JSON.">"
+    show_hint="1"
+>
+    <select name="fluent_page_template_id">
+        <mt:loop name="templates">
+            <option
+                value="<mt:var name='template_id' escape='html' />"
+                <mt:if name="fluent_page_template_id" eq="$template_id">selected="selected"</mt:if>
+                >
+                <mt:var name="label" escape="html" />
+                (<mt:var name="blog" escape="html" />)
+            </option>
+        </mt:loop>
+    </select>
+</mtapp:setting>
